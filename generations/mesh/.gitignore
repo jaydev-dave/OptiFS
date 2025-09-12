@@ -1,3 +1,3 @@
 # generations/mesh/.gitignore
-# This directory transfers the mesh file to perform fluent meshing
+# This directory receives the mesh file to perform fluent meshing here
 # (kept empty as placeholder)
