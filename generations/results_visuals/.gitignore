@@ -1,0 +1,3 @@
+# generations/results_visuals/.gitignore
+# This directory holds the pdf file containing the contour plots, residuals and probe plots for each design
+# (kept empty as placeholder)
