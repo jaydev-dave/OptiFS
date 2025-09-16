@@ -66,7 +66,7 @@ src/
 - [pymoo](https://pymoo.org/)
 - [ANSYS SpaceClaim](https://www.ansys.com/products/modeling/spaceclaim)
 - [ANSYS Fluent](https://www.ansys.com/products/fluids/ansys-fluent)
-- [OpenFOAM](https://www.openfoam.com/) (WSL recommended for Windows)
+- [OpenFOAM](https://openfoam.org/) (WSL recommended for Windows)
 - [Paraview](https://www.paraview.org/) (for post-processing)
 - Other Python packages: numpy, pandas, matplotlib, autograd
 - Python modules: `ansys.geometry.core`, `ansys.fluent.core`
@@ -140,3 +140,4 @@ python src/main.py
 
 ---
 For more details, see comments in each script and the configuration file.
+
