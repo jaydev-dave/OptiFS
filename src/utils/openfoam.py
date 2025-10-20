@@ -23,15 +23,15 @@ class OpenFOAM:
         print(f"Running Openfoam Simulation with the design: {self.design_number}")
         
 
-        if os.path.exists(rf"{config.foam_case}/mesh.msh"):
-            os.remove(rf"{config.foam_case}/mesh.msh") 
+        if os.path.exists(rf"{config.foam_case_run}/mesh.msh"):
+            os.remove(rf"{config.foam_case_run}/mesh.msh") 
 
         #copy and rename mesh file to case directory
         self.mesh_path = rf"{config.mesh_folder}\mesh-"+str(self.design_number)+".msh"
-        original_msh = rf"{config.foam_case}\\mesh-"+str(self.design_number)+".msh"
-        renamed_msh = rf"{config.foam_case}\\mesh.msh"
+        original_msh = rf"{config.foam_case_run}\\mesh-"+str(self.design_number)+".msh"
+        renamed_msh = rf"{config.foam_case_run}\\mesh.msh"
 
-        shutil.copy(self.mesh_path,config.foam_case)
+        shutil.copy(self.mesh_path,config.foam_case_run)
         os.rename(original_msh,renamed_msh)
 
         if os.path.exists(self.mesh_path):
@@ -56,8 +56,8 @@ class OpenFOAM:
         plotter = Plotter(self.design_number)
         plotter.generate_plots()
 
-        image_paths = [rf"{config.foam_case}\U.png",
-                       rf"{config.foam_case}\LIC.png",
+        image_paths = [rf"{config.foam_case_run}\U.png",
+                       rf"{config.foam_case_run}\LIC.png",
                        rf"{config.residual_probes}\residuals_design-{self.design_number}.png",
                        rf"{config.residual_probes}\probe_U_design-{self.design_number}.png",
                        rf"{config.residual_probes}\probe_press_design-{self.design_number}.png",]
@@ -155,4 +155,5 @@ class OpenFOAM:
 if __name__ == "__main__":
         # Generate and save plots using the PlotResiduals class
         simulation = OpenFOAM(1)
+
         simulation.execute()
