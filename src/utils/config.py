@@ -64,11 +64,10 @@ class Config:
 
         # Mesh-related paths
         self.mesh_folder = os.path.join(self.base_path, "generations","mesh")
-        self.workflow_path = os.path.join(self.base_path, "src", "template", "fluent_meshing_workflow_new.wft")
         self.save_mesh = os.path.join(self.base_path, "generations","mesh", "SA_mesh-")
 
         # Foam Simulation-related paths
-        self.foam_case_reference = os.path.join(self.foam_directory, "01_spark_arrestor_optimization-355mm")
+        self.foam_case_reference = os.path.join(self.foam_directory, "01_cylinder_in_pipe_optimization")
         self.foam_case_run = os.path.join(self.foam_directory, "foam_case_run")
         self.simulation_data_csv = os.path.join(self.foam_case_run, "data.csv")
         self.residual_probes = os.path.join(self.base_path, "generations", "residuals_probes")
@@ -82,3 +81,4 @@ class Config:
         self.results_visuals = os.path.join(self.base_path, "generations", "results_visuals")
         self.optimization_result = os.path.join(self.base_path, "result_of_optimization_study")
         self.pareto_front_solution = os.path.join(self.base_path, "result_of_optimization_study", "pareto_front_solutions.csv")
+
