@@ -19,7 +19,7 @@ paraview.simple._DisableFirstRenderCameraReset()
 
 
 # create a new 'OpenFOAMReader'
-optimizationfoam = OpenFOAMReader(registrationName='optimization.foam', FileName='/home/cfduser/OpenFOAM/cfduser-12/run/01_cylinder_in_pipe_optimization/optimization.foam') # <-- Path #1
+optimizationfoam = OpenFOAMReader(registrationName='optimization.foam', FileName='__ADD_FOAM_PATH__/optimization.foam') # <-- Path #1
 
 optimizationfoam.MeshRegions = ['internalMesh']
 optimizationfoam.CellArrays = ['U', 'k', 'nut', 'omega', 'p', 'wallShearStress']
@@ -760,7 +760,7 @@ spreadSheetView2.HiddenColumnLabels = ['Block Number', 'Cell ID', 'Area', 'Cell 
 spreadSheetView2.HiddenColumnLabels = ['Block Number', 'Cell ID', 'Area', 'Cell Type', 'k', 'Normals_0', 'wallShearStress_Magnitude', 'wallShearStress', 'U_Magnitude', 'U', 'omega', 'nut', 'Normals_Magnitude', 'Normals_2', 'Normals_1']
 
 # export view
-ExportView('/home/cfduser/OpenFOAM/cfduser-12/run/01_cylinder_in_pipe_optimization/data.csv', view=spreadSheetView2) # <-- Path #2
+ExportView('__ADD_FOAM_PATH__/data.csv', view=spreadSheetView2) # <-- Path #2
 
 # set active view
 SetActiveView(renderView1)
@@ -829,7 +829,7 @@ renderView1.CameraViewAngle = 17.366368433126866
 renderView1.CameraParallelScale = 0.855805597213099
 
 # save screenshot
-SaveScreenshot('/home/cfduser/OpenFOAM/cfduser-12/run/01_cylinder_in_pipe_optimization/U.png', renderView1, ImageResolution=[1453, 790]) # <-- Path #3
+SaveScreenshot('__ADD_FOAM_PATH__/U.png', renderView1, ImageResolution=[1453, 790]) # <-- Path #3
 
 # reset view to fit data bounds
 renderView1.ResetCamera(-0.4000000059604645, 1.2999999523162842, -0.09949210286140442, 0.09953810274600983, 2.102181315422058e-05, 2.102181315422058e-05, True)
@@ -847,7 +847,7 @@ renderView1.CameraViewAngle = 17.366368433126866
 renderView1.CameraParallelScale = 0.855805597213099
 
 # save screenshot
-SaveScreenshot('/home/cfduser/OpenFOAM/cfduser-12/run/01_cylinder_in_pipe_optimization/LIC.png', renderView1, ImageResolution=[1453, 790]) # <-- Path #4
+SaveScreenshot('__ADD_FOAM_PATH__/LIC.png', renderView1, ImageResolution=[1453, 790]) # <-- Path #4
 
 #================================================================
 # addendum: following script captures some of the application
