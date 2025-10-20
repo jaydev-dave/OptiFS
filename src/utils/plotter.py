@@ -104,9 +104,9 @@ class Plotter:  # Class name should follow PascalCase
     
     def generate_plots(self):
         # File paths
-        residuals_file = rf"{config.foam_case}\postProcessing\residuals\0\residuals.dat"
-        pressure_probe_file = rf"{config.foam_case}\postProcessing\probes\0\p"
-        U_probe_file = rf"{config.foam_case}\postProcessing\probes\0\U"
+        residuals_file = rf"{config.foam_case_run}\postProcessing\residuals\0\residuals.dat"
+        pressure_probe_file = rf"{config.foam_case_run}\postProcessing\probes\0\p"
+        U_probe_file = rf"{config.foam_case_run}\postProcessing\probes\0\U"
 
         # Output file paths
         residuals_output = rf"{config.residual_probes}\residuals_design-"+str(self.design_number)+".png"
