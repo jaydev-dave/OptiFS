@@ -2,19 +2,14 @@
 
 
 ## Overview
-**OptiFS** is a Python-based framework for automating **multi-objective design optimization**, integrating a complete **CAD → Meshing → CFD → Post-processing** pipeline coupled with a genetic algorithm–based optimizer. 
+**OptiFS** is a Python-based framework for automating multi-objective design optimization, integrating a complete **CAD → Meshing → CFD → Post-processing** pipeline. It combines:
 
-The framework can be configured with different tools at each stage:  
-- **CAD generation** – parametric geometry creation (e.g., ANSYS SpaceClaim, SolidWorks, Inventor)  
-- **Mesh generation** – automated meshing (e.g., ANSYS Fluent Meshing, Gmsh, SALOME)  
-- **Physics simulation** – flow or multiphysics solvers (e.g., OpenFOAM, ANSYS Fluent, STAR-CCM+)  
-- **Optimization algorithms** – multi-objective optimization (e.g., NSGA-II, NSGA-III, BRKGA) 
+- **ANSYS SpaceClaim 2025R2** for parametric CAD generation
+- **ANSYS Fluent Meshing 2025R2** for automated mesh creation
+- **OpenFOAM 12** (via WSL/Linux) for CFD simulations
+- **pymoo 0.6.0 (NSGA-II)** for multi-objective optimization
 
-
-The optimization is performed using the **Non-dominated Sorting Genetic Algorithm II (NSGA-II)** from the [pymoo](https://pymoo.org) library. However, the modular structure allows the substitution of any other optimization algorithm as required.  
-
-OptiFS enables users to select the most suitable software for each stage, balancing simulation cost and unique capabilities. The workflow is extensible to other simulation domains and software with Python interfaces.  
-
+OptiFS enables users to select the most suitable software for each stage, balancing simulation cost and unique capabilities. The workflow is extensible to other simulation domains and software with Python interfaces.
 
 ## Project Structure
 
@@ -41,18 +36,12 @@ src/
     plotter.py        # Plotting utilities
 ```
 
-During execution, the OpenFOAM case folder is copied to the WSL `$FOAM_RUN` directory. CAD files are saved in `generations/cad`, then moved to `generations/mesh` for meshing, and subsequently transferred to the OpenFOAM case directory in WSL for simulation and post-processing.
-
-OptiFS is designed to be extensible. If your preferred CAD or simulation software provides a Python interface, you can adapt the framework to alternatives such as StarCCM+, SALOME, ANSYS Fluent, or other tools. The workflow is applicable to various simulation domains, including structural mechanics, acoustics, and electromagnetics.
-
-The example application is described in detail in the section [Example Application: *Cylinder-in-Pipe*](#example-application-cylinder-in-pipe).  
-
-
+During execution, the OpenFOAM case folder is duplicated under `reference/wsl_openfoam_case` with a run-specific name (`foam_case_run`). CAD files are produced in `generations/cad`, moved to `generations/mesh` for meshing, and then transferred into the OpenFOAM case directory in WSL for simulation and post-processing.
 
 ## Requirements
 
 - Windows Subsystem for Linux (WSL) Version: 2.6.1.0
-- [Python 3.10+](https://www.python.org/downloads/)
+- Python 3.10+
 - [pymoo 0.6.0](https://pymoo.org/)
 - [ANSYS SpaceClaim 2025R2](https://www.ansys.com/products/modeling/spaceclaim)
 - [ANSYS Fluent 2025R2](https://www.ansys.com/products/fluids/ansys-fluent)
@@ -87,7 +76,7 @@ For more details, see the comments in your shell script and the [WSL documentati
    pip install -r requirements.txt
    ```
 3. **Install and configure required software** (SpaceClaim, Fluent, OpenFOAM, Paraview).
-4. **Update all relevant paths and parameters** in `src/utils/config.py` and `reference/wsl_openfoam_case/01_cylinder_in_pipe_optimization/paraview_trace_script.py`.
+4. **Update all relevant paths and parameters** in `src/utils/config.py`
 5. Activate XLaunch with display number 0 and disable access control (Windows).
 6. **Run the optimization**:
    ```bash
@@ -124,14 +113,16 @@ This example optimizes a **3D cylinder placed inside a pipe** by varying its **l
 - Minimizing **pressure drop across the cylinder**
 - Minimizing **drag force on the cylinder**
 
-(No constraints are applied in this study, but they can be added if required.)  
+Constraints can be added as needed.
 
+## Features
 
-In the current implementation, OptiFS integrates:  
-- **ANSYS SpaceClaim 2025R2** for parametric CAD generation  
-- **ANSYS Fluent Meshing 2025R2** for automated mesh creation  
-- **OpenFOAM 12** (via WSL/Linux) for CFD simulations  
-- **pymoo 0.6.0 (NSGA-II)** for multi-objective optimization 
+- Parametric design optimization
+- Automated CAD generation (SpaceClaim)
+- Automated meshing (ANSYS Fluent Meshing)
+- CFD simulation (OpenFOAM)
+- Post-processing and visualization
+- Detailed logging
 
 ## Troubleshooting
 
