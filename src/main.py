@@ -85,14 +85,37 @@ class MainOptimizationProblem(Problem):
 
     def _evaluate(self, X, out, *args, **kwargs):
 
+
         #######################################################################################
-        # Check if foam_case directory exists
-        # =====================================================================================
-        if not os.path.exists(config.foam_case):
-            shutil.copytree(
-                src=os.path.join(config.reference, "wsl_openfoam_case", "01_cylinder_in_pipe_optimization"),
-                dst=config.foam_case
-            )
+        # Copies the reference case into a working directory to keep the reference setup unchanged
+        # ===================================================================================== 
+        # Ensure the reference case exists
+        if not os.path.exists(config.foam_case_reference):
+            raise FileNotFoundError(f"Reference case not found: {config.foam_case_reference}")
+
+        # If the run directory already exists, remove it to start fresh
+        if os.path.exists(config.foam_case_run):
+            shutil.rmtree(config.foam_case_run)
+
+
+        # Copy the entire directory (recursively)
+        shutil.copytree(config.foam_case_reference, config.foam_case_run) 
+        
+
+        #######################################################################################
+        # Update the path to paraview script
+        # =====================================================================================        
+        paraview_trace_file = rf"{config.foam_case_run}\paraview_trace_script.py"       
+        
+        with open(paraview_trace_file, "r") as template:
+            lines = template.readlines()
+    
+        with open(paraview_trace_file, "w") as file:
+            for line in lines:
+                # Replace all occurrences of the placeholder in the line
+                updated_line = line.replace("__ADD_FOAM_PATH__", config.wsl_foam_path)
+               
+                file.write(updated_line)
 
         f1_list = []  # Pressure Drop
         f2_list = []  # Drag Force of the cylinder 
@@ -375,3 +398,4 @@ if res.F is not None and res.X is not None:
     print(f"\nPareto-optimal designs exported to '{config.pareto_front_solution}'")
 else:
     print("ERROR: Optimization result is incomplete or failed (res.F or res.X is None). Skipping export and plot.")
+
