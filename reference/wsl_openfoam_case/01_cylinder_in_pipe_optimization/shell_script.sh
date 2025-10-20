@@ -13,7 +13,9 @@ export OMPI_MCA_btl_vader_single_copy_mechanism=none
 
 
 # Navigate to the OpenFOAM run directory
-cd $FOAM_RUN/01_cylinder_in_pipe_optimization
+cd <path_to_wsl_foam_case>
+# Example:
+# cd /mnt/f/Projects/CFD_Optimization/reference/wsl_openfoam_case/foam_case_run
 
 chmod +x Allclean
 ./Allclean
