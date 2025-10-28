@@ -58,13 +58,13 @@ class Config:
         self.design_table_csv = os.path.join(self.base_path, "optimization_designs_data_table.csv")
 
         # CAD-related paths
-        self.cad_script = os.path.join(self.base_path, "src","template", "spaceclaim_SA_script.py")
+        self.cad_script = os.path.join(self.base_path, "src","template", "spaceclaim_cylinder_in_pipe.py")
         self.cad_folder = os.path.join(self.base_path, "generations","cad")
-        self.save_cad = os.path.join(self.base_path, "generations","cad", "SA_Design-")
+        self.save_cad = os.path.join(self.base_path, "generations","cad", "Design-")
 
         # Mesh-related paths
         self.mesh_folder = os.path.join(self.base_path, "generations","mesh")
-        self.save_mesh = os.path.join(self.base_path, "generations","mesh", "SA_mesh-")
+        self.save_mesh = os.path.join(self.base_path, "generations","mesh", "mesh-")
 
         # Foam Simulation-related paths
         self.foam_case_reference = os.path.join(self.foam_directory, "01_cylinder_in_pipe_optimization")
@@ -81,4 +81,3 @@ class Config:
         self.results_visuals = os.path.join(self.base_path, "generations", "results_visuals")
         self.optimization_result = os.path.join(self.base_path, "result_of_optimization_study")
         self.pareto_front_solution = os.path.join(self.base_path, "result_of_optimization_study", "pareto_front_solutions.csv")
-
