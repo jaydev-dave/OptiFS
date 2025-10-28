@@ -102,20 +102,32 @@ class MainOptimizationProblem(Problem):
         shutil.copytree(config.foam_case_reference, config.foam_case_run) 
         
 
-        #######################################################################################
-        # Update the path to paraview script
-        # =====================================================================================        
-        paraview_trace_file = rf"{config.foam_case_run}\paraview_trace_script.py"       
         
+        # Define file paths
+        paraview_trace_file = rf"{config.foam_case_run}\paraview_trace_script.py"
+        shell_script_file = rf"{config.foam_case_run}\shell_script.sh"
+
+        #######################################################################################
+        # Update the ParaView trace script & shell script with actual foam path
+        # =====================================================================================        
         with open(paraview_trace_file, "r") as template:
             lines = template.readlines()
-    
+
         with open(paraview_trace_file, "w") as file:
             for line in lines:
-                # Replace all occurrences of the placeholder in the line
+                # Replace all occurrences of the placeholder
                 updated_line = line.replace("__ADD_FOAM_PATH__", config.wsl_foam_path)
-               
                 file.write(updated_line)
+                
+        with open(shell_script_file, "r") as template:
+            lines = template.readlines()
+
+        with open(shell_script_file, "w") as file:
+            for line in lines:
+                # Replace all occurrences of the placeholder
+                updated_line = line.replace("__ADD_FOAM_PATH__", config.wsl_foam_path)
+                file.write(updated_line)
+        
 
         f1_list = []  # Pressure Drop
         f2_list = []  # Drag Force of the cylinder 
@@ -398,4 +410,5 @@ if res.F is not None and res.X is not None:
     print(f"\nPareto-optimal designs exported to '{config.pareto_front_solution}'")
 else:
     print("ERROR: Optimization result is incomplete or failed (res.F or res.X is None). Skipping export and plot.")
+
 
