@@ -12,7 +12,7 @@ design_number = 2
 
 try:
     cyclinder_length = float(argsDict["parameter_0"])
-	cyclinder_diameter = float(argsDict["parameter_1"])
+    cyclinder_diameter = float(argsDict["parameter_1"])
     
 
 except NameError:
@@ -104,46 +104,10 @@ options.SubtractFromTarget = True
 result = Combine.Intersect(targets, tools, options)
 # EndBlock
 
-######################### BOI body generation #########################################
-
-# Set Sketch Plane
-sectionPlane = Plane.PlaneXY
-result = ViewHelper.SetSectionPlane(sectionPlane, None)
-# EndBlock
-
-# Set Sketch Plane
-mode = InteractionMode.Sketch
-result = ViewHelper.SetViewMode(mode, None)
-# EndBlock
-
-# Create Sketch Cylinder
-result = CylinderBody.Create(Point.Create(MM(0), MM(0), MM(0)), Point.Create(MM(6*D+200), MM(2.69032116462925E-12), MM(0)), Point.Create(MM(6*D+200), MM(cyclinder_diameter/2+10), MM(0)), ExtrudeType.ForceIndependent)
-# EndBlock
-
-# Rename 'Solid' to 'boi'
-selection = BodySelection.Create(GetRootPart().Bodies[1])
-result = RenameObject.Execute(selection,"boi")
-# EndBlock
-
-# Change Object Visibility
-selection = BodySelection.Create(GetRootPart().Bodies[1])
-visibility = VisibilityType.Hide
-inSelectedView = False
-faceLevel = False
-ViewHelper.SetObjectVisibility(selection, visibility, inSelectedView, faceLevel)
-# EndBlock
-
-# Solidify Sketch
-mode = InteractionMode.Solid
-result = ViewHelper.SetViewMode(mode, None)
-# EndBlock
-
-######################### Naming the inner Cylinder #########################################
-
 # Create Named Selection Group
 primarySelection = FaceSelection.Create([GetRootPart().Bodies[0].Faces[3],
-	GetRootPart().Bodies[0].Faces[5],
-	GetRootPart().Bodies[0].Faces[4]])
+    GetRootPart().Bodies[0].Faces[5],
+    GetRootPart().Bodies[0].Faces[4]])
 secondarySelection = Selection.Empty()
 result = NamedSelection.Create(primarySelection, secondarySelection, "Group1")
 # EndBlock
@@ -152,3 +116,21 @@ result = NamedSelection.Create(primarySelection, secondarySelection, "Group1")
 # Rename Named Selection
 result = NamedSelection.Rename("Group1", "wall_inner")
 # EndBlock
+
+######################### BOI body generation #########################################
+
+
+
+# Create New Part
+selection = PartSelection.Create(GetRootPart())
+result = ComponentHelper.CreateNewComponent(selection, None)
+# EndBlock
+
+# Rename 'Component1' to 'boi'
+selection = PartSelection.Create(GetRootPart().Components[0].Content)
+result = RenameObject.Execute(selection,"boi")
+# EndBlock
+
+# Create Sketch Cylinder
+result = CylinderBody.Create(Point.Create(MM(0), MM(0), MM(0)), Point.Create(MM(6*D+200), MM(2.69032116462925E-12), MM(0)), Point.Create(MM(6*D+200), MM(cyclinder_diameter/2+10), MM(0)), ExtrudeType.ForceIndependent)
+## EndBlock
