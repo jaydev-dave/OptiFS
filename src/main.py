@@ -138,7 +138,7 @@ class MainOptimizationProblem(Problem):
         # =====================================================================================
         print("\n\n X:")
         for row in X:
-            print([round(val, 2) for val in row])
+            print([round(float(val), 2) for val in row])
         print("\n")
         
         
@@ -410,5 +410,6 @@ if res.F is not None and res.X is not None:
     print(f"\nPareto-optimal designs exported to '{config.pareto_front_solution}'")
 else:
     print("ERROR: Optimization result is incomplete or failed (res.F or res.X is None). Skipping export and plot.")
+
 
 
