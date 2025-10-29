@@ -75,10 +75,14 @@ For more details, see the comments in your shell script and the [WSL documentati
    ```bash
    pip install -r requirements.txt
    ```
-3. **Install and configure required software** (SpaceClaim, Fluent, OpenFOAM, Paraview).
-4. **Update all relevant paths and parameters** in `src/utils/config.py`
-5. Activate XLaunch with display number 0 and disable access control (Windows).
-6. **Run the optimization**:
+3. **Install dos2unix** (required for shell script compatibility):
+   ```bash
+   sudo apt-get install dos2unix
+   ```
+4. **Install and configure required software** (SpaceClaim, Fluent, OpenFOAM, Paraview).
+5. **Update all relevant paths and parameters** in `src/utils/config.py`
+6. Activate XLaunch with display number 0 and disable access control (Windows).
+7. **Run the optimization**:
    ```bash
    python src/main.py
    ```
@@ -134,8 +138,8 @@ Constraints can be added as needed.
 
 ## Authors
 
-- Preetham Suresh
-- Jaydev Dave
+- [Preetham Suresh](https://www.linkedin.com/in/preetham-suresh-38aa6a16a/)
+- [Jaydev Dave](https://www.linkedin.com/in/jaydev-dave/)
 
 ---
 
