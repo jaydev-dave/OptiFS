@@ -43,8 +43,10 @@ class OpenFOAM:
         #Start timing
         start_time = time.time()
         design_log_path = os.path.join(config.log_folder, f"log_design-{self.design_number}.txt")
-        wsl_command = f'wsl bash -c "cd {config.wsl_foam_path} && chmod +x shell_script.sh && ./shell_script.sh"'
-
+        wsl_command = (
+            f'wsl bash -c "cd {config.wsl_foam_path} && '
+            f'dos2unix shell_script.sh && chmod +x shell_script.sh && ./shell_script.sh"')
+        
         with open(design_log_path, "a") as log_file:
             process = subprocess.Popen(wsl_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
             for line in process.stdout:
@@ -157,3 +159,4 @@ if __name__ == "__main__":
         simulation = OpenFOAM(1)
 
         simulation.execute()
+
