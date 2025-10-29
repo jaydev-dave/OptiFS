@@ -17,7 +17,7 @@ config = Config()
 class FluentMeshing:
     def __init__(self, design_number):
         self.design_number = int(design_number)
-        self.cad_path = rf"{config.save_cad}"+str(self.design_number)+"\Konstruktion1.pmdb"
+        self.cad_path = rf"{config.save_cad}"+str(self.design_number)+"\Design1.pmdb"
         
     def execute(self):
                 
@@ -26,7 +26,7 @@ class FluentMeshing:
         #######################################################################################
         # Copy CAD file to Mesh Folder & Record the starting time
         # =====================================================================================
-        self.cad_in_mesh_folder = f"{config.mesh_folder}/Konstruktion1.pmdb"
+        self.cad_in_mesh_folder = f"{config.mesh_folder}/Design1.pmdb"
 
         if os.path.exists(self.cad_in_mesh_folder):
             os.remove(self.cad_in_mesh_folder)      
@@ -62,7 +62,7 @@ class FluentMeshing:
                 "AddChild": "yes",
                 "BOIControlName": "boi",
                 "BOIExecution": "Body Of Influence",
-                "BOIFaceLabelList": ["boi-volumenk-rper"], 
+                "BOIFaceLabelList": ["boi-solid"], 
                 "BOIGrowthRate": 1.2,
                 "BOISize": 0.007
             }
