@@ -11,6 +11,12 @@
 
 OptiFS enables users to select the most suitable software for each stage, balancing simulation cost and unique capabilities. The workflow is extensible to other simulation domains and software with Python interfaces.
 
+## UML Diagram
+
+![UML Diagram](docs/uml/OptiFS_UML.png)
+
+[View/download UML diagram (PDF)](docs/uml/OptiFS_UML.drawio.pdf)
+
 ## Project Structure
 
 ```
@@ -144,3 +150,4 @@ Constraints can be added as needed.
 ---
 
 For further details, refer to comments in each script and the configuration file.
+
