@@ -15,7 +15,7 @@ OptiFS enables users to select the most suitable software for each stage, balanc
 
 ![UML Diagram](docs/uml/OptiFS_UML.png)
 
-[View/download UML diagram (PDF)](docs/uml/OptiFS_UML.drawio.pdf)
+[View/download UML diagram (PDF)](docs/uml/OptiFS_UML.pdf)
 
 ## Project Structure
 
@@ -150,5 +150,6 @@ Constraints can be added as needed.
 ---
 
 For further details, refer to comments in each script and the configuration file.
+
 
 
