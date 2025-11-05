@@ -52,7 +52,7 @@ During execution, the OpenFOAM case folder is duplicated under `reference/wsl_op
 - [ANSYS SpaceClaim 2025R2](https://www.ansys.com/products/modeling/spaceclaim)
 - [ANSYS Fluent 2025R2](https://www.ansys.com/products/fluids/ansys-fluent)
 - [OpenFOAM 12](https://openfoam.org/) (recommended via WSL for Windows)
-- [Paraview](https://www.paraview.org/) (for post-processing)
+- [Paraview (version 5.11.2 or above)](https://www.paraview.org/) (for post-processing)
 - Additional Python packages listed in [requirements.txt](./requirements.txt)
 
 ## WSL Display Setup (Windows 10 & XLaunch)
@@ -150,6 +150,7 @@ Constraints can be added as needed.
 ---
 
 For further details, refer to comments in each script and the configuration file.
+
 
 
 
