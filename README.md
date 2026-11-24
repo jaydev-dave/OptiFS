@@ -1,5 +1,6 @@
 # OptiFS: Optimization Framework with Simulation Software
 
+# Project is migrated to Gitlab at : (https://github.com/jaydev-dave/OptiFS)
 
 ## Overview
 **OptiFS** is a Python-based framework for automating multi-objective design optimization, integrating a complete **CAD → Meshing → CFD → Post-processing** pipeline. It combines:
